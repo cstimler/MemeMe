@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqF-0O-Rcy" userLabel="Image Picker View">
-                                <rect key="frame" x="5" y="64" width="404" height="778"/>
+                                <rect key="frame" x="5" y="144" width="404" height="698"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="imageView.contentMode">
                                         <integer key="value" value="1"/>
@@ -41,9 +41,10 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nV3-iR-NGG">
-                                <rect key="frame" x="5" y="84" width="404" height="34"/>
+                                <rect key="frame" x="5" y="164" width="404" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ry0-SG-n5p">
@@ -52,6 +53,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zSN-C8-1yR">
+                                <rect key="frame" x="5" y="100" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="UQ9-1J-S4j"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -65,7 +73,7 @@
                             <constraint firstItem="Ry0-SG-n5p" firstAttribute="bottom" secondItem="iqF-0O-Rcy" secondAttribute="bottom" constant="-20" id="ZEi-ho-szE"/>
                             <constraint firstItem="Ry0-SG-n5p" firstAttribute="trailing" secondItem="iqF-0O-Rcy" secondAttribute="trailing" id="b1X-w2-fKT"/>
                             <constraint firstItem="nV3-iR-NGG" firstAttribute="trailing" secondItem="iqF-0O-Rcy" secondAttribute="trailing" id="gL2-C9-Q77"/>
-                            <constraint firstItem="iqF-0O-Rcy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="qSw-VT-tle"/>
+                            <constraint firstItem="iqF-0O-Rcy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="qSw-VT-tle"/>
                         </constraints>
                     </view>
                     <connections>

@@ -22,11 +22,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40),
-        NSAttributedString.Key.strokeWidth: 5
+        NSAttributedString.Key.strokeWidth: -5
     ]
     
-    
-    // "HelveticaNeue-CondensedBlack"
+    struct Meme {
+        var topText: String
+        var bottomText: String
+        var originalImage: UIImage
+        var memedImage: UIImage
+    }
     
 
     
@@ -136,6 +140,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return memedImage
+    }
+    
+    func save() {
+        
+        let memedImage = generateMemedImage()
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
     }
 
 }
