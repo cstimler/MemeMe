@@ -94,8 +94,10 @@
                     <connections>
                         <outlet property="bottomTextField" destination="Ry0-SG-n5p" id="KpC-7x-j4q"/>
                         <outlet property="cameraButton" destination="9b3-Pb-a0P" id="awg-ON-i6k"/>
-                        <outlet property="imagePickerView" destination="iqF-0O-Rcy" id="MmA-ZN-edm"/>
+                        <outlet property="imagePickerView" destination="iqF-0O-Rcy" id="tvx-Vm-IWU"/>
+                        <outlet property="navigationBar" destination="zSN-C8-1yR" id="8kZ-8X-dqr"/>
                         <outlet property="shareButton" destination="tGP-es-ess" id="8aj-h3-afM"/>
+                        <outlet property="toolbar" destination="arv-2K-d3C" id="VIj-dl-Vgv"/>
                         <outlet property="topTextField" destination="nV3-iR-NGG" id="LTS-HX-IBn"/>
                     </connections>
                 </viewController>
