@@ -16,8 +16,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // We use a property observer to determine whether or not the shareButton should be enabled:
    
     @IBOutlet weak var imagePickerView: UIImageView!
-  /*
-    var trickyImage: UIImage?
+  /* Here is code that I had tried (using a property observer), but it didn't work!!  It seems that even when a new image is loaded into the imagePickerView, it doesn't call a "didSet" event.  And I just couldn't get a hold of a UIImage view to use.  The compiler didn't like anything like var image = imagePickerView.image stating that the imagePickerView gets instantiated after vars are registered.  I even tried placing this type of statement in one of the life-cycle functions but then I had issues with its not being a global variable.  Nevertheless, I solved the problem another way by just being careful where I placed my enabled code.
+     
+    @IBOutlet weak var imagePickerView: UIImageView!
     {
         didSet {
             if let shareButton = shareButton {
@@ -252,7 +253,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
          very helpful here:
          https://stackoverflow.com/questions/28169192/uiactivityviewcontroller-completion-handler-returns-success-when-tweet-has-faile
          */
-        controller.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, activityError: Error?) in
+        controller.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, activityError: Error?) -> Void in
             if completed {
                 self.save()
             }
