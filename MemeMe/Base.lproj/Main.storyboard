@@ -17,16 +17,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqF-0O-Rcy" userLabel="Image Picker View">
-                                <rect key="frame" x="5" y="144" width="404" height="698"/>
+                                <rect key="frame" x="5" y="44" width="404" height="818"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="imageView.contentMode">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="arv-2K-d3C">
-                                <rect key="frame" x="0.0" y="834" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arv-2K-d3C">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem title="Album" id="znH-GJ-PrO" userLabel="Album Button">
                                         <connections>
@@ -40,24 +39,34 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nV3-iR-NGG">
-                                <rect key="frame" x="5" y="164" width="404" height="34"/>
+                            <textField autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nV3-iR-NGG">
+                                <rect key="frame" x="5" y="93" width="404" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ry0-SG-n5p">
-                                <rect key="frame" x="5" y="788" width="404" height="34"/>
+                                <rect key="frame" x="5" y="779" width="409" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zSN-C8-1yR">
-                                <rect key="frame" x="5" y="100" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSN-C8-1yR">
+                                <rect key="frame" x="5" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="UQ9-1J-S4j"/>
+                                    <navigationItem id="UQ9-1J-S4j">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="tGP-es-ess">
+                                            <connections>
+                                                <action selector="showSharingOptions:" destination="BYZ-38-t0r" id="bGj-u1-DEF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="UBi-nW-pOD">
+                                            <connections>
+                                                <action selector="leaveView:" destination="BYZ-38-t0r" id="HNU-eP-CTZ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -66,20 +75,27 @@
                         <constraints>
                             <constraint firstItem="iqF-0O-Rcy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="0i7-vz-ZYf"/>
                             <constraint firstItem="iqF-0O-Rcy" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1bp-FK-Qci"/>
-                            <constraint firstItem="nV3-iR-NGG" firstAttribute="top" secondItem="iqF-0O-Rcy" secondAttribute="top" constant="20" id="22G-pm-bRu"/>
-                            <constraint firstItem="iqF-0O-Rcy" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-20" id="2Dz-we-krd"/>
+                            <constraint firstItem="iqF-0O-Rcy" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2Dz-we-krd"/>
+                            <constraint firstItem="arv-2K-d3C" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5fb-Mq-4nO"/>
                             <constraint firstItem="Ry0-SG-n5p" firstAttribute="leading" secondItem="iqF-0O-Rcy" secondAttribute="leading" id="CmW-c1-E4D"/>
                             <constraint firstItem="nV3-iR-NGG" firstAttribute="leading" secondItem="iqF-0O-Rcy" secondAttribute="leading" id="NOH-e6-mLB"/>
-                            <constraint firstItem="Ry0-SG-n5p" firstAttribute="bottom" secondItem="iqF-0O-Rcy" secondAttribute="bottom" constant="-20" id="ZEi-ho-szE"/>
-                            <constraint firstItem="Ry0-SG-n5p" firstAttribute="trailing" secondItem="iqF-0O-Rcy" secondAttribute="trailing" id="b1X-w2-fKT"/>
+                            <constraint firstItem="arv-2K-d3C" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Qi9-sI-wGE"/>
+                            <constraint firstItem="arv-2K-d3C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Rtg-z6-I7c"/>
+                            <constraint firstItem="Ry0-SG-n5p" firstAttribute="bottom" secondItem="arv-2K-d3C" secondAttribute="top" id="ZEi-ho-szE"/>
+                            <constraint firstItem="Ry0-SG-n5p" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="b1X-w2-fKT"/>
                             <constraint firstItem="nV3-iR-NGG" firstAttribute="trailing" secondItem="iqF-0O-Rcy" secondAttribute="trailing" id="gL2-C9-Q77"/>
-                            <constraint firstItem="iqF-0O-Rcy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="qSw-VT-tle"/>
+                            <constraint firstItem="nV3-iR-NGG" firstAttribute="top" secondItem="zSN-C8-1yR" secondAttribute="bottom" constant="5" id="jMx-cK-ZHq"/>
+                            <constraint firstItem="zSN-C8-1yR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="oKc-YC-E7i"/>
+                            <constraint firstItem="iqF-0O-Rcy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qSw-VT-tle"/>
+                            <constraint firstItem="zSN-C8-1yR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ytq-tW-cHB"/>
+                            <constraint firstItem="zSN-C8-1yR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="5" id="zNL-dK-8e3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="Ry0-SG-n5p" id="KpC-7x-j4q"/>
                         <outlet property="cameraButton" destination="9b3-Pb-a0P" id="awg-ON-i6k"/>
                         <outlet property="imagePickerView" destination="iqF-0O-Rcy" id="MmA-ZN-edm"/>
+                        <outlet property="shareButton" destination="tGP-es-ess" id="8aj-h3-afM"/>
                         <outlet property="topTextField" destination="nV3-iR-NGG" id="LTS-HX-IBn"/>
                     </connections>
                 </viewController>
@@ -90,6 +106,7 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

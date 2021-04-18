@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     
@@ -107,7 +107,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if textField == bottomTextField {
             bottomTextField.text = ""
         }
-    
+   // return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -158,4 +158,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
     }
 
+    @IBAction func leaveView(_ sender: Any) {
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+        imagePickerView.image = nil
+    }
+    
+    // Need to create an outlet for the share button in order to anchor the "popover" menu for the iPads!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    
+    @IBAction func showSharingOptions(_ sender: Any) {
+        let image = UIImage()
+        let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+      //  let rect = CGRect(x: 10, y: 10, width: 100, height: 100)
+      //  let myView = UIView(frame: rect)
+        // In order to work on iPad too, I had to add the following if/then code since iPads use popovers sometimes:
+        if UIDevice.current.userInterfaceIdiom == .pad {
+          //  let rect = CGRect(x: 10, y: 10, width: 100, height: 100)
+          //  let myView = UIView(frame: rect)
+            controller.modalPresentationStyle = .popover
+            controller.popoverPresentationController!.delegate = self
+            controller.popoverPresentationController!.barButtonItem = shareButton
+         //   present(popoverPresentationController, animated: true, completion: nil)
+        }
+       
+       // view.popoverPresentationController!.delegate = self
+        
+       // popoverPresentationController!.barButtonItem =
+        //    shareButton
+
+        present(controller, animated:true, completion: nil)
+    }
 }
