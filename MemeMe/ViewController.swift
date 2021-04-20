@@ -16,23 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // We use a property observer to determine whether or not the shareButton should be enabled:
    
     @IBOutlet weak var imagePickerView: UIImageView!
-  /* Here is code that I had tried (using a property observer), but it didn't work!!  It seems that even when a new image is loaded into the imagePickerView, it doesn't call a "didSet" event.  And I just couldn't get a hold of a UIImage view to use.  The compiler didn't like anything like var image = imagePickerView.image stating that the imagePickerView gets instantiated after vars are registered.  I even tried placing this type of statement in one of the life-cycle functions but then I had issues with its not being a global variable.  Nevertheless, I solved the problem another way by just being careful where I placed my enabled code.
-     
-    @IBOutlet weak var imagePickerView: UIImageView!
-    {
-        didSet {
-            if let shareButton = shareButton {
-                if let imagePickerView = imagePickerView {
-                if imagePickerView.image == nil {
-                shareButton.isEnabled = true
-            } else {
-                shareButton.isEnabled = true
-            }
-            }
-        }
-    }
-    }
- */
+  
     // This is the camera button:
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
@@ -49,10 +33,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Here are the attributes that characterize the "written in text"
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.black,
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40),
-        NSAttributedString.Key.strokeWidth: -5
+          .strokeColor: UIColor.black,
+          .foregroundColor: UIColor.white,
+          .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40),
+          .strokeWidth: -5
     ]
     
     // These are the components that make up the Meme:
@@ -68,25 +52,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        shareButton.isEnabled = false
+        if imagePickerView.image == nil {
+            shareButton.isEnabled = false }
+        else {shareButton.isEnabled = true}
         subscribeToKeyboardNotifications()
     }
-
+    
+    // encapsulate repetitive code into a function:
+    func setupTextField(_ textField: UITextField!, text: String) {
+        textField.delegate = self
+        textField.text = text
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+    }
+    
     // Register the text delegates, initialize the text fields:
     override func viewDidLoad() {
         super.viewDidLoad()
-       // ViewController.originalImage = self
-        // I set some of these defaults already in the storyboard, but will repeat them here to be sure:
-        
-        self.topTextField.delegate = self
-        self.bottomTextField.delegate = self
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        bottomTextField.textAlignment = .center
-        
+        setupTextField(topTextField, text: "TOP")
+        setupTextField(bottomTextField, text: "BOTTOM")
     }
 
     // Do some housekeeping when the view controller exits including unsubscribing from notificaitons:
@@ -95,35 +79,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
     
-    // Boilerplate for showing and selecting an image from the Image Picker:
-    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        
-        let pickerController = UIImagePickerController()
-        
-        pickerController.delegate = self
-        
-        pickerController.sourceType = .photoLibrary
-        
-        present(pickerController, animated: true, completion: nil)
-    }
-    // need void function for "pickAnImageFromCamera" completion below
+    // need return:void function to enable share button:
     
     func enableShareButton() {
         shareButton.isEnabled = true
     }
     
-    // Boilerplate for enabling the camera as source type:
+    func presentPickerViewController(source: UIImagePickerController.SourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = source
+        present(pickerController, animated: true, completion: nil)
+    }
+    
+    // Selecting an image from the Album:
+    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
+        presentPickerViewController(source: .photoLibrary)
+    }
+    // Selecting an image from the Camera:
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-            
-        shareButton.isEnabled = true
-
-            let imagePicker = UIImagePickerController()
-        
-            imagePicker.delegate = self
-        
-            imagePicker.sourceType = .camera
-        
-        present(imagePicker, animated: true, completion: enableShareButton)
+        presentPickerViewController(source: .camera)
         }
     
     // This function places the selected image as the display image:
@@ -131,18 +106,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let image = info[.originalImage] as? UIImage
         
         { imagePickerView.image = image}
-        
-        
-        
-        dismiss(animated: true, completion: enableShareButton)
-        
-        
+        shareButton.isEnabled = true
+        dismiss(animated: true, completion: nil)
     }
     
     // This function dismisses the Image Picker:
     func imagePickerControllerDidCancel(_: UIImagePickerController) {
         
         dismiss(animated: true, completion: nil)
+        
         
     }
     
@@ -200,6 +172,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var toolbar: UIToolbar!
     
+    func hideToolNavBar(_ condition : Bool) {
+        toolbar.isHidden = condition
+        navigationBar.isHidden = condition
+    }
     
     // This function constructs the image as an object which can be forwarded to the destination chosen in the
     // ActivityViewController below:
@@ -207,16 +183,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // temporarily hide the toolbar and navigationBar for
         // a better image:
         
-        toolbar.isHidden = true
-        navigationBar.isHidden = true
+        hideToolNavBar(true)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+        
         // restore toolbar and navigationBar:
-        toolbar.isHidden = false
-        navigationBar.isHidden = false
+        hideToolNavBar(false)
         
         return memedImage
     }
