@@ -38,7 +38,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
           .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40),
           .strokeWidth: -5
     ]
-    
+   /*
     // These are the components that make up the Meme:
     struct Meme {
         var topText: String
@@ -46,7 +46,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var originalImage: UIImage
         var memedImage: UIImage
     }
-    
+    */
 
     // Determine whether or not to enable the camera button depending upon whether or not the camera is available
     override func viewWillAppear(_ animated: Bool) {
@@ -198,9 +198,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // saves "meme" as an object:
     func save() {
-        
+        // Update the meme
         let memedImage = generateMemedImage()
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        
+        // Add it to the memes array
+        //(UIApplication.shared.delegate as! AppDelegate).memes.append(meme) // OR
+        /*
+         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+         appDelegate.memes.append(meme)
+         */
+        
+        let object = UIApplication.shared.delegate
+            let appDelegate = object as! AppDelegate
+            appDelegate.memes.append(meme)
     }
 
     // Resets view to initial view if the user presses "Cancel"
