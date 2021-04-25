@@ -9,6 +9,7 @@ import UIKit
 import Foundation
 
 class SentMemesCollectionViewController: UICollectionViewController {
+
     
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
@@ -16,18 +17,61 @@ class SentMemesCollectionViewController: UICollectionViewController {
         return appDelegate.memes
     }
 
- //   @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         // Do any additional setup after loading the view.
+   //     callNotificationAdd()
         self.loadView()
+        
+    }
+    
+    func callNotificationAdd() {
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    @objc func rotated(_notification: Notification) {
+               if UIDevice.current.orientation.isLandscape {
+                       let space:CGFloat = 3.0
+                let dimension = (view.frame.size.width - (5*space))/6.0
+                       flowLayout.minimumInteritemSpacing = space
+                       flowLayout.minimumLineSpacing = space
+                           flowLayout.itemSize = CGSize(width:dimension, height:dimension)
+                   
+               } else {
+                    
+                       
+                       let space:CGFloat = 3.0
+                let dimension = (view.frame.size.width - (2*space))/3.0
+                       flowLayout.minimumInteritemSpacing = space
+                       flowLayout.minimumLineSpacing = space
+                           flowLayout.itemSize = CGSize(width:dimension, height:dimension)
+                   
+               }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if UIDevice.current.orientation.isLandscape {
+                let space:CGFloat = 3.0
+            let dimension = (view.frame.size.width - (5*space))/6.0
+                flowLayout.minimumInteritemSpacing = space
+                flowLayout.minimumLineSpacing = space
+                    flowLayout.itemSize = CGSize(width:dimension, height:dimension)
+            
+        } else {      // unfortunately this includes upside down
+             
+                
+                let space:CGFloat = 3.0
+            let dimension = (view.frame.size.width - (2*space))/3.0
+                flowLayout.minimumInteritemSpacing = space
+                flowLayout.minimumLineSpacing = space
+                    flowLayout.itemSize = CGSize(width:dimension, height:dimension)
+            
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -47,6 +91,12 @@ class SentMemesCollectionViewController: UICollectionViewController {
     }
     */
 
+    
+    deinit {
+       NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    
     // MARK: UICollectionViewDataSource
 
 
@@ -56,11 +106,21 @@ class SentMemesCollectionViewController: UICollectionViewController {
         return self.memes.count
     }
 
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var dimension: Int
+        var tempcell: UIImage!
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionCell", for: indexPath) as! MemeCollectionViewCell
         
         let meme = self.memes[(indexPath as NSIndexPath).row]
-        cell.imageView.image = meme.memedImage
+        tempcell = meme.memedImage
+        let space:CGFloat = 3.0
+        if UIDevice.current.orientation.isLandscape {
+            dimension = Int((view.frame.size.width - (5*space))/6.0)} else {
+                dimension = Int((view.frame.size.width - (2*space))/3.0)
+            }
+        tempcell = tempcell.imageResize(sizeChange: CGSize(width: dimension, height: Int(Double(dimension)*2.2)))
+        cell.imageView.image = tempcell
         return cell
     }
     
@@ -70,6 +130,16 @@ class SentMemesCollectionViewController: UICollectionViewController {
         detailController.meme = self.memes[(indexPath as NSIndexPath).row]
         self.navigationController!.pushViewController(detailController, animated: true)
     }
+   /*
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let xPadding = 10
+            let spacing = 10
+            let rightPadding = 10
+            let width = (CGFloat(UIScreen.main.bounds.size.width) - CGFloat(xPadding + spacing + rightPadding))/2
+            let height = CGFloat(515)
+
+            return CGSize(width: width, height: height)
+        }   */
 
     // MARK: UICollectionViewDelegate
 
