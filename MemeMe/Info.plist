@@ -20,6 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera will be used to capture a picture to create a meme.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo Album will be used to register a picture to create a meme.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -49,10 +53,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Camera will be used to capture a picture to create a meme.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo Album will be used to register a picture to create a meme.</string>
+	<key>UIRequiresFullScreen</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

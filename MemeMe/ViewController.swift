@@ -212,6 +212,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
             appDelegate.memes.append(meme)
+        print("Object saved")
     }
 
     // Resets view to initial view if the user presses "Cancel"
