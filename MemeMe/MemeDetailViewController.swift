@@ -24,12 +24,22 @@ var meme: Meme!
     
     @IBOutlet weak var memeImage: UIImageView!
     
+    // https://stackoverflow.com/questions/36358032/override-app-orientation-setting/48120684#48120684
+    
+    func setAutoRotation(value: Bool) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+       appDelegate.autoRotation = value
+    }
+    }
+    
     // MARK: Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.memeImage.image = self.meme.memedImage
         self.tabBarController?.tabBar.isHidden = true
+        setAutoRotation(value: false) // https://stackoverflow.com/questions/36358032/override-app-orientation-setting/48120684#48120684
+        // Do any additional setup after loading the view.
       //  supportedInterfaceOrientations()
       //  override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait}
     }
@@ -37,12 +47,12 @@ var meme: Meme!
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        setAutoRotation(value: true)  // https://stackoverflow.com/questions/36358032/override-app-orientation-setting/48120684#48120684
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     
@@ -58,5 +68,6 @@ var meme: Meme!
         // Pass the selected object to the new view controller.
     }
     */
+    }
 
-}
+
