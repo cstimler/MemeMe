@@ -165,11 +165,9 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zot-7h-GYG">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="300"/>
-                                            <color key="backgroundColor" red="1" green="0.89019607840000003" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                     <constraints>
                                         <constraint firstItem="Zot-7h-GYG" firstAttribute="bottom" secondItem="nux-cD-oXY" secondAttribute="bottom" id="2Gl-pv-N2e"/>
                                         <constraint firstItem="Zot-7h-GYG" firstAttribute="top" secondItem="nux-cD-oXY" secondAttribute="top" id="8iP-iy-Zcv"/>
@@ -177,7 +175,6 @@
                                         <constraint firstItem="Zot-7h-GYG" firstAttribute="leading" secondItem="nux-cD-oXY" secondAttribute="leading" id="utk-3a-UzG"/>
                                     </constraints>
                                 </collectionViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="imageView" destination="Zot-7h-GYG" id="6BI-Qu-8Jw"/>
                                 </connections>
@@ -303,7 +300,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CZV-Er-GQM"/>
+        <segue reference="ISF-2s-NF0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="94"/>
@@ -311,9 +308,6 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
