@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var memes = [Meme]()
     
     // Reference: https://stackoverflow.com/questions/36358032/override-app-orientation-setting/48120684#48120684
-    // for below 5 lines: (with some modifications)
+    // for below 5 lines: (with some modifications) to control orientation in individual view controller
     
     var autoRotation: Bool = true
 

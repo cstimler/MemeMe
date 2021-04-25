@@ -119,7 +119,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
             dimension = Int((view.frame.size.width - (5*space))/6.0)} else {
                 dimension = Int((view.frame.size.width - (2*space))/3.0)
             }
-        tempcell = tempcell.imageResize(sizeChange: CGSize(width: dimension, height: Int(Double(dimension)*2.2)))
+        tempcell = tempcell.imageResize(sizeChange: CGSize(width: dimension, height: Int(Double(dimension)*2.2))) // uses code from "ResizeImage.swift"
         cell.imageView.image = tempcell
         return cell
     }

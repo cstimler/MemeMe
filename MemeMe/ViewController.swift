@@ -38,15 +38,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
           .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40),
           .strokeWidth: -5
     ]
-   /*
-    // These are the components that make up the Meme:
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage
-        var memedImage: UIImage
-    }
-    */
+   
 
     // Determine whether or not to enable the camera button depending upon whether or not the camera is available
     override func viewWillAppear(_ animated: Bool) {

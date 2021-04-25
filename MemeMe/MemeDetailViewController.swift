@@ -16,15 +16,11 @@ class MemeDetailViewController: UIViewController {
 
 var meme: Meme!
     
-    // https://useyourloaf.com/blog/upside-down-and-rotating-iphones/
-    
-   // override var supportedInterfaceOrientations: UIInterfaceOrientationMask {set {[.portrait]}}
-    
     // MARK: Outlets
     
     @IBOutlet weak var memeImage: UIImageView!
     
-    // https://stackoverflow.com/questions/36358032/override-app-orientation-setting/48120684#48120684
+    //  I used code from the following website to keep this view controller in portrait orientation: https://stackoverflow.com/questions/36358032/override-app-orientation-setting/48120684#48120684
     
     func setAutoRotation(value: Bool) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
